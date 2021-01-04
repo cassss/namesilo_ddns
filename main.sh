@@ -14,7 +14,6 @@ echo "sync start：`date`"
 [[ "$DOMAIN" == "" ]] && echo "domain is empty" && exit 1
 [[ "$HOST" == "" ]] && echo "host is empty" && exit 1
 [[ "$TYPE" == "" ]] && echo "type is empty" && exit 1
-[[ "$TYPE" == "" ]] && echo "type is empty" && exit 1
 [[ "`which xmllint`" == "" ]] && echo "need xmllint" && exit 1
 [[ "`which curl`" == "" ]] && echo "need curl" && exit 1
 
@@ -33,7 +32,7 @@ if [[ $record == "" ]]
 then
     echo "not found dns record, start try to create"
     # key domain type host value ttl=3600
-    echo "create response：`CreateDNSRecord $API_KEY $DOMAIN $TYPE $HOST $loc_ip`"
+    echo "create response：`CreateDNSRecord $API_KEY $DOMAIN $TYPE $HOST $loc_ip $TTL`"
     exit
 fi
 
@@ -48,6 +47,6 @@ fi
 
 echo "start update：recourd_id：$record_id ip: $loc_ip"
 # key domain rrid rrtype rrhost rrvalue rrttl=3600
-echo "update response：`UpdateDNSRecord $API_KEY $DOMAIN $record_id $TYPE $HOST $loc_ip`"
+echo "update response：`UpdateDNSRecord $API_KEY $DOMAIN $record_id $TYPE $HOST $loc_ip $TTL`"
 
 

@@ -28,7 +28,7 @@ CreateDNSRecord() {
     rrhost=$4
     rrvalue=$5
     rrttl=$6
-    [[ "$rrttl" == "" ]] && ttl="3600"
+    [[ "$rrttl" == "" ]] && rrttl="3600"
     url="$NAMESILO_CREATE&key=$key&domain=$domain&rrtype=$rrtype&rrhost=$rrhost&rrvalue=$rrvalue&rrttl=$rrttl"
     curl -s $url | xmllint --xpath "/namesilo/reply/detail/text()" -
 }
@@ -42,7 +42,7 @@ UpdateDNSRecord() {
     rrhost=$5
     rrvalue=$6
     rrttl=$7
-    [[ "$rrttl" == "" ]] && ttl="3600"
+    [[ "$rrttl" == "" ]] && rrttl="3600"
     url="$NAMESILO_UPDATE&key=$key&domain=$domain&rrid=$rrid&rrhost=$rrhost&rrvalue=$rrvalue&rrttl=$rrttl"
     curl -s $url | xmllint --xpath "/namesilo/reply/detail/text()" -
 }
